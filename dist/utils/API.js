@@ -7,14 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-console.log('hello world');
-import { getCharacters } from "./utils/API.js";
-window.addEventListener("load", init);
-function init() {
+const url = "https://rickandmortyapi.com/api/";
+const urlCharacters = `${url}/character`;
+export function getCharacters() {
     return __awaiter(this, void 0, void 0, function* () {
-        const charactersList = document.querySelector('#charactersList');
-        const characters = yield getCharacters();
-        console.log(characters);
+        const response = yield fetch(urlCharacters);
+        const data = yield response.json();
+        return data.results;
     });
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=API.js.map

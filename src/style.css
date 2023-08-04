@@ -1,0 +1,22 @@
+.body{
+    height: 800px;
+    background-color: aqua;
+}
+
+#mainHeader {
+    background-color: red;
+    height: 10%;
+}
+
+#mainContent {
+    height: 80%;
+}
+
+#mainFooter {
+    background-color: red;   
+    height: 10%;
+}
+
+.card {
+    margin: 10px;
+}
