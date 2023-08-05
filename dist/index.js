@@ -8,13 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 console.log('hello world');
-import { getCharacters } from "./utils/API.js";
+import { getCharacters, getEpisodes } from "./utils/API.js";
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
-        const charactersList = document.querySelector('#charactersList');
         const characters = yield getCharacters();
         console.log(characters);
+        characters.forEach((char) => {
+            console.log(char.gender);
+        });
+        const episodes = yield getEpisodes();
+        console.log(episodes);
     });
 }
 //# sourceMappingURL=index.js.map
