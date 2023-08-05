@@ -13,6 +13,8 @@ const episodeCardsMainContainer = document.querySelector('#episodeCardsMainConta
 const accordionBody1 = document.querySelector("#accordionBody1");
 const accordionBody2 = document.querySelector("#accordionBody2");
 const accordionBody3 = document.querySelector("#accordionBody3");
+const accordionBody4 = document.querySelector("#accordionBody4");
+const accordionBody5 = document.querySelector("#accordionBody5");
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -21,9 +23,16 @@ function init() {
         characters.forEach((char) => {
             console.log(char.gender);
         });
-        const episodes = yield getEpisodes();
-        console.log(episodes);
-        episodes.forEach((epis) => {
+        const episodes1 = yield getEpisodes(1);
+        episodes1.forEach((epis) => {
+            createEpisodeLink(epis);
+        });
+        const episodes2 = yield getEpisodes(2);
+        episodes2.forEach((epis) => {
+            createEpisodeLink(epis);
+        });
+        const episodes3 = yield getEpisodes(3);
+        episodes3.forEach((epis) => {
             createEpisodeLink(epis);
         });
     });
@@ -31,12 +40,36 @@ function init() {
 function createEpisodeLink(episode) {
     const url = episode.url;
     const id = episode.id;
-    const linkTitle = episode.episode;
-    const link = document.createElement("a");
-    link.classList.add('card');
-    link.setAttribute("id", `cardID${id}`);
-    link.setAttribute("src", url);
-    link.innerText = linkTitle;
-    accordionBody1.appendChild(link);
+    const codeEpisode = episode.episode;
+    const season = getSeasonFromEpisode(codeEpisode);
+    const btn = document.createElement("button");
+    btn.classList.add('link');
+    btn.classList.add('container-fluid');
+    btn.setAttribute("id", `linkID${id}`);
+    btn.setAttribute("src", url);
+    btn.innerText = codeEpisode;
+    btn.addEventListener('click', () => {
+        console.log(url);
+        console.log(season);
+    });
+    if (season == '1') {
+        accordionBody1.appendChild(btn);
+    }
+    else if (season == '2') {
+        accordionBody2.appendChild(btn);
+    }
+    else if (season == '3') {
+        accordionBody3.appendChild(btn);
+    }
+    else if (season == '4') {
+        accordionBody4.appendChild(btn);
+    }
+    else if (season == '5') {
+        accordionBody5.appendChild(btn);
+    }
+}
+function getSeasonFromEpisode(code) {
+    const season = code.charAt(2);
+    return season;
 }
 //# sourceMappingURL=index.js.map

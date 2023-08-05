@@ -8,6 +8,8 @@ const episodeCardsMainContainer = document.querySelector('#episodeCardsMainConta
 const accordionBody1 = document.querySelector("#accordionBody1") as HTMLDivElement;
 const accordionBody2 = document.querySelector("#accordionBody2") as HTMLDivElement;
 const accordionBody3 = document.querySelector("#accordionBody3") as HTMLDivElement;
+const accordionBody4 = document.querySelector("#accordionBody4") as HTMLDivElement;
+const accordionBody5 = document.querySelector("#accordionBody5") as HTMLDivElement;
 
 window.addEventListener("load", init)
 
@@ -20,27 +22,51 @@ async function init() {
     })
 
 
-
-    const episodes = await getEpisodes();
-    console.log(episodes)
-    episodes.forEach((epis) => {
+    const episodes1 = await getEpisodes(1);
+    episodes1.forEach((epis) => {
         createEpisodeLink(epis)        
     })
+    const episodes2 = await getEpisodes(2);
+    episodes2.forEach((epis) => {
+        createEpisodeLink(epis)        
+    })
+    const episodes3 = await getEpisodes(3);
+    episodes3.forEach((epis) => {
+        createEpisodeLink(epis)        
+    })
+   
 
 }
 
 function createEpisodeLink(episode: Episode) {
     const url = episode.url
     const id = episode.id
-    const linkTitle = episode.episode
-    const link = document.createElement("a");
-    link.classList.add('card')
-    link.setAttribute("id", `cardID${id}`);
-    link.setAttribute("src", url);
-    link.innerText = linkTitle
+    const codeEpisode = episode.episode
+    const season = getSeasonFromEpisode(codeEpisode)
+    const btn = document.createElement("button");
+    btn.classList.add('link')
+    btn.classList.add('container-fluid')
+    btn.setAttribute("id", `linkID${id}`);
+    btn.setAttribute("src", url);
+    btn.innerText = codeEpisode
+    btn.addEventListener('click', () => {
+        console.log(url)
+        console.log(season)
+    })
+    if (season == '1') {
+        accordionBody1.appendChild(btn)
+    } else  if (season == '2') {
+        accordionBody2.appendChild(btn)
+    } else  if (season == '3') {
+        accordionBody3.appendChild(btn)
+    }  else  if (season == '4') {
+        accordionBody4.appendChild(btn)
+    }  else  if (season == '5') {
+        accordionBody5.appendChild(btn)
+    }  
+}
 
-    
-    accordionBody1.appendChild(link)
-
-    console.log(link)
+function getSeasonFromEpisode(code: string) {
+   const season = code.charAt(2)
+   return season
 }
