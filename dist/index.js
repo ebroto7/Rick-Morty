@@ -9,6 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 console.log('hello world');
 import { getCharacters, getEpisodes } from "./utils/API.js";
+const episodeCardsMainContainer = document.querySelector('#episodeCardsMainContainer');
+const accordionBody1 = document.querySelector("#accordionBody1");
+const accordionBody2 = document.querySelector("#accordionBody2");
+const accordionBody3 = document.querySelector("#accordionBody3");
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -19,6 +23,20 @@ function init() {
         });
         const episodes = yield getEpisodes();
         console.log(episodes);
+        episodes.forEach((epis) => {
+            createEpisodeLink(epis);
+        });
     });
+}
+function createEpisodeLink(episode) {
+    const url = episode.url;
+    const id = episode.id;
+    const linkTitle = episode.episode;
+    const link = document.createElement("a");
+    link.classList.add('card');
+    link.setAttribute("id", `cardID${id}`);
+    link.setAttribute("src", url);
+    link.innerText = linkTitle;
+    accordionBody1.appendChild(link);
 }
 //# sourceMappingURL=index.js.map

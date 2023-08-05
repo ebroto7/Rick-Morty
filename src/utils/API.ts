@@ -1,4 +1,5 @@
 import { Character } from "../types/Characters";
+import { Episode } from "../types/Episodes";
 
 const url = "https://rickandmortyapi.com/api/"
 const urlCharacters = `${url}/character`
@@ -10,7 +11,7 @@ export async function getCharacters(): Promise<Character[]> {
     return data.results;
 }
 
-export async function getEpisodes() {
+export async function getEpisodes(): Promise<Episode[]>  {
     const response = await fetch(urlEpisodes);
     const data = await response.json()
     return data.results;
