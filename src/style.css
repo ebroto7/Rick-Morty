@@ -1,11 +1,18 @@
 .body{
     height: 100vh;
-    background-color: aqua;
+    background-image: url(./img/wp5794980-rick-and-morty-4k-minimalist-wallpapers.jpg);
+    background-size: cover;
+    background-position: center;
+
 }
 
 #mainHeader {
-    background-color: red;
+    background-image: url(./img/rick-and-morty-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     height: 10%;
+
 }
 
 #mainContent {
@@ -23,6 +30,7 @@
 
 #singleEpisode_dataContainer {
     text-align: center;
+    color: white;
 }
 
 #singleEpisode_infoContainer {
@@ -35,4 +43,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    overflow: scroll;
+    height: 450px;
 }
