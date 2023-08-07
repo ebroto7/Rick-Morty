@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="/src/style.css">
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
     <script type="module" src="../dist/index.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-**********************" crossorigin="anonymous">
 </head>
 <body class="body">
     <header id="mainHeader" class="container-fluid"></header>
     <div id="mainContent" class="row overflow-auto" >
-            <aside id="mainSideBarMenu" class="col col-sm-3">
+            <aside id="mainSideBarMenu" class="col col-sm-3" data-bs-theme="dark">
                 <div class="col accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -88,7 +90,20 @@
                 </article>
             </main>
     </div>
-    <footer id="mainFooter" class="container-fluid">FOOTER</footer>
+    <!-- <footer id="mainFooter" class="container-fluid">FOOTER</footer> -->
+    <footer class="footerContainer">
+        <div class="footerLogoAIT">
+          <a id="footerAssemblerLink" href="https://assemblerinstitute.com"></a>
+        </div>
+        <div class="footerAuthors">
+          <!-- <h3 class="footerH3 ">ENRIC BROTO</h3> -->
+          <a class="authorLink" href="https://github.com/ebroto7">GitHub <i class="fa-brands fa-github-square"></i></a>
+          <a class="authorLink" href="https://www.linkedin.com/in/ebroto/">LinkedIn <i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="footerOtherInfo">
+          <h4>©Copyright August 2023</h4>
+        </div>
+      </footer>
 
 </body>
 </html>
