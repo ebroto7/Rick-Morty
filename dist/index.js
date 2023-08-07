@@ -106,12 +106,19 @@ function createCharacterdCard(url) {
         const img = document.createElement("img");
         img.src = char.image;
         img.classList.add('card-img-top');
+        img.classList.add('d-none');
+        img.classList.add('d-sm-block');
         const name = document.createElement("h4");
         name.classList.add('card-title');
         name.innerText = char.name;
         name.style.textAlign = 'center';
+        const info = document.createElement("p");
+        info.classList.add('card-title');
+        info.innerText = `${char.species} | ${char.status}`;
+        info.style.textAlign = 'center';
         card.appendChild(img);
         card.appendChild(name);
+        card.appendChild(info);
         singleEpisode_charcatersContainer.appendChild(card);
     });
 }
