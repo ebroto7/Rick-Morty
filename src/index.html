@@ -14,7 +14,6 @@
     <header id="mainHeader" class="container-fluid">HEADER</header>
     <div id="mainContent" class="row overflow-auto" >
             <aside id="mainSideBarMenu" class="col col-sm-3">
-                <div>EPISODES</div>
                 <div class="col accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -74,11 +73,19 @@
                 </div>
             </aside>
             <main id="mainPage" class="col-sm-9 d-flex flex-wrap">
-                <div class="container-fluid">MAIN</div>
-                <div id="episodeCardsMainContainer" class="container-fluid d-flex justify-content-around flex-wrap ">
-                    hello world container
-                  
-                </div>
+                <article id="episodeMainContainer" class="container-fluid d-flex justify-content-around flex-wrap ">
+                 
+                    <div id="singleEpisode_dataContainer" class="container-fluid">
+                        <h1 id="singleEpisode_nameContainer"></h1>
+                        <div id="singleEpisode_infoContainer" class="row container-fluid" >
+                            <h3 id="singleEpisode_codeContainer" class="container-sm"></h3>
+                            <h3 id="singleEpisode_airDateContainer" class="container-sm"></h3>
+                        </div>
+                    </div>
+                    <div id="singleEpisode_charcatersContainer"></div>
+               
+            
+                </article>
             </main>
     </div>
     <footer id="mainFooter" class="container-fluid">FOOTER</footer>

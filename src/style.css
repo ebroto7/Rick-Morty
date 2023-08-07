@@ -1,5 +1,5 @@
 .body{
-    height: 800px;
+    height: 100vh;
     background-color: aqua;
 }
 
@@ -19,4 +19,20 @@
 
 .card {
     margin: 10px;
+}
+
+#singleEpisode_dataContainer {
+    text-align: center;
+}
+
+#singleEpisode_infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#singleEpisode_charcatersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }

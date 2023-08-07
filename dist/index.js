@@ -7,22 +7,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-console.log('hello world');
-import { getCharacters, getEpisodes } from "./utils/API.js";
-const episodeCardsMainContainer = document.querySelector('#episodeCardsMainContainer');
+import { getCharacters, getEpisodes, getSingleCharacter, getSingleEpisode } from "./utils/API.js";
 const accordionBody1 = document.querySelector("#accordionBody1");
 const accordionBody2 = document.querySelector("#accordionBody2");
 const accordionBody3 = document.querySelector("#accordionBody3");
 const accordionBody4 = document.querySelector("#accordionBody4");
 const accordionBody5 = document.querySelector("#accordionBody5");
+const episodeMainContainer = document.querySelector('#episodeCardsMainContainer');
+const singleEpisode_dataContainer = document.querySelector('#singleEpisode_dataContainer');
+const singleEpisode_nameContainer = document.querySelector('#singleEpisode_nameContainer');
+const singleEpisode_airDateContainer = document.querySelector('#singleEpisode_airDateContainer');
+const singleEpisode_codeContainer = document.querySelector('#singleEpisode_codeContainer');
+const singleEpisode_charcatersContainer = document.querySelector('#singleEpisode_charcatersContainer');
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
+        getAllEpisodesLinks();
         const characters = yield getCharacters();
         console.log(characters);
         characters.forEach((char) => {
             console.log(char.gender);
         });
+    });
+}
+function getAllEpisodesLinks() {
+    return __awaiter(this, void 0, void 0, function* () {
         const episodes1 = yield getEpisodes(1);
         episodes1.forEach((epis) => {
             createEpisodeLink(epis);
@@ -43,14 +52,13 @@ function createEpisodeLink(episode) {
     const codeEpisode = episode.episode;
     const season = getSeasonFromEpisode(codeEpisode);
     const btn = document.createElement("button");
-    btn.classList.add('link');
+    btn.classList.add('episodelink');
     btn.classList.add('container-fluid');
     btn.setAttribute("id", `linkID${id}`);
     btn.setAttribute("src", url);
     btn.innerText = codeEpisode;
     btn.addEventListener('click', () => {
-        console.log(url);
-        console.log(season);
+        createEpisodeView(url);
     });
     if (season == '1') {
         accordionBody1.appendChild(btn);
@@ -71,5 +79,40 @@ function createEpisodeLink(episode) {
 function getSeasonFromEpisode(code) {
     const season = code.charAt(2);
     return season;
+}
+function createEpisodeView(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        singleEpisode_charcatersContainer.replaceChildren();
+        const episode = yield getSingleEpisode(url);
+        singleEpisode_nameContainer.innerText = episode.name;
+        singleEpisode_airDateContainer.innerText = episode.air_date;
+        singleEpisode_codeContainer.innerText = episode.episode;
+        const characters = episode.characters;
+        characters.forEach(char => {
+            const url = char.toString();
+            createCharacterdCard(url);
+        });
+    });
+}
+function createCharacterdCard(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const char = yield getSingleCharacter(url);
+        const card = document.createElement("button");
+        card.classList.add('card');
+        card.style.width = '18rem';
+        card.addEventListener('click', () => {
+            console.log(char.name);
+        });
+        const img = document.createElement("img");
+        img.src = char.image;
+        img.classList.add('card-img-top');
+        const name = document.createElement("h4");
+        name.classList.add('card-title');
+        name.innerText = char.name;
+        name.style.textAlign = 'center';
+        card.appendChild(img);
+        card.appendChild(name);
+        singleEpisode_charcatersContainer.appendChild(card);
+    });
 }
 //# sourceMappingURL=index.js.map

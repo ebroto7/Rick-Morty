@@ -17,12 +17,27 @@ export function getCharacters() {
         return data.results;
     });
 }
+export function getSingleCharacter(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(url);
+        const data = yield response.json();
+        return data;
+    });
+}
 export function getEpisodes(page) {
     return __awaiter(this, void 0, void 0, function* () {
         let episodesPageUrl = `${urlEpisodes}${page}`;
         const response = yield fetch(episodesPageUrl);
         const data = yield response.json();
         return data.results;
+    });
+}
+export function getSingleEpisode(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(url);
+        const data = yield response.json();
+        console.log(data);
+        return data;
     });
 }
 //# sourceMappingURL=API.js.map
