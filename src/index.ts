@@ -228,11 +228,39 @@ async function getEpisodeCode(url: string): Promise<string> {
 
 async function createLocationView(url: string) {
      mainPage?.replaceChildren()
-    const char = await getSingleLocation(url)
+    const location = await getSingleLocation(url)
     
-    const btn = document.createElement("button");
-    btn.innerText = char.name
+    const episodeMainContainer = document.createElement('div') as HTMLDivElement
+    episodeMainContainer.classList.add('container-fluid')
+    episodeMainContainer.classList.add('d-flex')
+    episodeMainContainer.classList.add('justify-content-around')
+    episodeMainContainer.classList.add('flex-wrap')
 
-    mainPage?.appendChild(btn)
-    console.log(char)
+    const singleEpisode_dataContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_dataContainer.id = "singleEpisode_dataContainer"
+    singleEpisode_dataContainer.classList.add('container-fluid')
+
+    const singleEpisode_charcatersContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer"
+    singleEpisode_charcatersContainer.innerText = "RESIDENTS:"
+    singleEpisode_charcatersContainer.style.color = "red"
+
+
+    const title = document.createElement("h2");
+    title.innerText = location.name
+    const info = document.createElement("h4");
+    info.innerText = `${location.type} | ${location.dimension}`
+
+    const characters = location.residents
+    characters.forEach(char => {
+        const url = char.toString()
+        createCharacterdCard(url, singleEpisode_charcatersContainer)
+    });
+
+    singleEpisode_dataContainer.appendChild(title)
+    singleEpisode_dataContainer.appendChild(info)
+    episodeMainContainer.appendChild(singleEpisode_dataContainer)
+    episodeMainContainer.appendChild(singleEpisode_charcatersContainer)
+    mainPage?.appendChild(episodeMainContainer)
+    console.log(location)
 }

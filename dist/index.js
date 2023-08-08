@@ -193,11 +193,34 @@ function getEpisodeCode(url) {
 function createLocationView(url) {
     return __awaiter(this, void 0, void 0, function* () {
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
-        const char = yield getSingleLocation(url);
-        const btn = document.createElement("button");
-        btn.innerText = char.name;
-        mainPage === null || mainPage === void 0 ? void 0 : mainPage.appendChild(btn);
-        console.log(char);
+        const location = yield getSingleLocation(url);
+        const episodeMainContainer = document.createElement('div');
+        episodeMainContainer.classList.add('container-fluid');
+        episodeMainContainer.classList.add('d-flex');
+        episodeMainContainer.classList.add('justify-content-around');
+        episodeMainContainer.classList.add('flex-wrap');
+        const singleEpisode_dataContainer = document.createElement('div');
+        singleEpisode_dataContainer.id = "singleEpisode_dataContainer";
+        singleEpisode_dataContainer.classList.add('container-fluid');
+        const singleEpisode_charcatersContainer = document.createElement('div');
+        singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer";
+        singleEpisode_charcatersContainer.innerText = "RESIDENTS:";
+        singleEpisode_charcatersContainer.style.color = "red";
+        const title = document.createElement("h2");
+        title.innerText = location.name;
+        const info = document.createElement("h4");
+        info.innerText = `${location.type} | ${location.dimension}`;
+        const characters = location.residents;
+        characters.forEach(char => {
+            const url = char.toString();
+            createCharacterdCard(url, singleEpisode_charcatersContainer);
+        });
+        singleEpisode_dataContainer.appendChild(title);
+        singleEpisode_dataContainer.appendChild(info);
+        episodeMainContainer.appendChild(singleEpisode_dataContainer);
+        episodeMainContainer.appendChild(singleEpisode_charcatersContainer);
+        mainPage === null || mainPage === void 0 ? void 0 : mainPage.appendChild(episodeMainContainer);
+        console.log(location);
     });
 }
 //# sourceMappingURL=index.js.map
