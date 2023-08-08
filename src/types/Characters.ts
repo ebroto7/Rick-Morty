@@ -5,8 +5,8 @@ export interface Character {
     species:  CharacterSpecies;
     type:     string;
     gender:   Gender;
-    origin:   Location;
-    location: Location;
+    origin:   Planet;
+    location: Planet;
     image:    string;
     episode:  string[];
     url:      string;
@@ -20,7 +20,7 @@ export enum Gender {
     Unknown = "unknown",
 }
 
-export interface Location {
+export interface Planet {
     name: string;
     url:  string;
 }

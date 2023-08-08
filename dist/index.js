@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getCharacters, getEpisodes, getSingleCharacter, getSingleEpisode } from "./utils/API.js";
+import { getEpisodes, getSingleCharacter, getSingleEpisode, getSingleLocation } from "./utils/API.js";
 const accordionBody1 = document.querySelector("#accordionBody1");
 const accordionBody2 = document.querySelector("#accordionBody2");
 const accordionBody3 = document.querySelector("#accordionBody3");
@@ -23,11 +23,6 @@ window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         getAllEpisodesLinks();
-        const characters = yield getCharacters();
-        console.log(characters);
-        characters.forEach((char) => {
-            console.log(char.gender);
-        });
     });
 }
 function getAllEpisodesLinks() {
@@ -88,6 +83,7 @@ function createEpisodeView(url) {
         singleEpisode_airDateContainer.innerText = episode.air_date;
         singleEpisode_codeContainer.innerText = episode.episode;
         const characters = episode.characters;
+        const hello = characters[1];
         characters.forEach(char => {
             const url = char.toString();
             createCharacterdCard(url);
@@ -99,17 +95,18 @@ function createCharacterdCard(url) {
         const char = yield getSingleCharacter(url);
         const card = document.createElement("button");
         card.classList.add('card');
-        card.style.width = '18rem';
+        card.style.width = '12rem';
         card.setAttribute("data-bs-toggle", "modal");
         card.setAttribute("data-bs-target", "#characterModal");
         card.addEventListener('click', () => {
-            console.log(char.name);
+            createCharacterdModal(char);
         });
         const img = document.createElement("img");
         img.src = char.image;
         img.classList.add('card-img-top');
         img.classList.add('d-none');
         img.classList.add('d-sm-block');
+        console.log(char.image);
         const name = document.createElement("h4");
         name.classList.add('card-title');
         name.innerText = char.name;
@@ -122,6 +119,55 @@ function createCharacterdCard(url) {
         card.appendChild(name);
         card.appendChild(info);
         singleEpisode_charcatersContainer.appendChild(card);
+    });
+}
+function createCharacterdModal(char) {
+    const modalCharacter_name = document.querySelector('#modalCharacter_name');
+    const modalCharacter_IMG = document.querySelector('#modalCharacter_IMG');
+    const modalCharacter_info = document.querySelector('#modalCharacter_info');
+    const modalCharacter_location_link = document.querySelector('#modalCharacter_location_link');
+    modalCharacter_location_link.classList.add('btn');
+    modalCharacter_location_link.classList.add('btn-outline-light');
+    const modalCharacter_EpisodeBtnContainer = document.querySelector('#modalCharacter_EpisodeBtnContainer');
+    modalCharacter_EpisodeBtnContainer.replaceChildren();
+    modalCharacter_IMG.src = char.image;
+    modalCharacter_name.innerText = char.name;
+    modalCharacter_info.innerText = `${char.species} | ${char.status} | ${char.gender}`;
+    modalCharacter_location_link.innerText = char.location.name;
+    modalCharacter_location_link.setAttribute("data-bs-dismiss", "modal");
+    modalCharacter_location_link.addEventListener('click', () => {
+        createLocationView(char.location.url);
+    });
+    const apearences = char.episode;
+    apearences.forEach(apear => {
+        const btn = document.createElement("button");
+        btn.classList.add('episodelink');
+        btn.classList.add('container-fluid');
+        btn.classList.add('btn');
+        btn.classList.add('btn-light');
+        btn.setAttribute("data-bs-dismiss", "modal");
+        btn.setAttribute("src", apear);
+        const code = getEpisodeCode(apear);
+        btn.innerText = 'hello world';
+        btn.addEventListener('click', () => {
+            createEpisodeView(apear);
+        });
+        modalCharacter_EpisodeBtnContainer.appendChild(btn);
+        console.log(apear);
+    });
+}
+function getEpisodeCode(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const episode = yield getSingleEpisode(url);
+        const code = episode.episode;
+        return code;
+    });
+}
+function createLocationView(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const char = yield getSingleLocation(url);
+        console.log(char);
+        console.log("chanchito feliz");
     });
 }
 //# sourceMappingURL=index.js.map
