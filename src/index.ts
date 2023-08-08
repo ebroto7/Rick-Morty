@@ -9,12 +9,7 @@ const accordionBody3 = document.querySelector("#accordionBody3") as HTMLDivEleme
 const accordionBody4 = document.querySelector("#accordionBody4") as HTMLDivElement;
 const accordionBody5 = document.querySelector("#accordionBody5") as HTMLDivElement;
 
-const episodeMainContainer = document.querySelector('#episodeCardsMainContainer') as HTMLDivElement;
-const singleEpisode_dataContainer = document.querySelector('#singleEpisode_dataContainer') as HTMLDivElement;
-const singleEpisode_nameContainer = document.querySelector('#singleEpisode_nameContainer') as HTMLDivElement;
-const singleEpisode_airDateContainer = document.querySelector('#singleEpisode_airDateContainer') as HTMLDivElement;
-const singleEpisode_codeContainer = document.querySelector('#singleEpisode_codeContainer') as HTMLDivElement;
-const singleEpisode_charcatersContainer = document.querySelector('#singleEpisode_charcatersContainer') as HTMLDivElement;
+const mainPage = document.querySelector('#mainPage')
 
 
 window.addEventListener("load", init)
@@ -77,28 +72,68 @@ function getSeasonFromEpisode(code: string) {
 
 
 async function createEpisodeView(url: string) {
-    singleEpisode_charcatersContainer.replaceChildren()
-
-
+    mainPage?.replaceChildren()
     const episode = await getSingleEpisode(url)
 
-    singleEpisode_nameContainer.innerText = episode.name
-    singleEpisode_airDateContainer.innerText = episode.air_date
-    singleEpisode_codeContainer.innerText = episode.episode
+    const episodeMainContainer = document.createElement('div') as HTMLDivElement
+    episodeMainContainer.classList.add('container-fluid')
+    episodeMainContainer.classList.add('d-flex')
+    episodeMainContainer.classList.add('justify-content-around')
+    episodeMainContainer.classList.add('flex-wrap')
 
+    const singleEpisode_dataContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_dataContainer.id = "singleEpisode_dataContainer"
+    singleEpisode_dataContainer.classList.add('container-fluid')
+
+    const singleEpisode_charcatersContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer"
+
+    singleEpisode_charcatersContainer.classList.add('flex-wrap')
+
+
+    episodeMainContainer.appendChild(singleEpisode_dataContainer)
+    episodeMainContainer.appendChild(singleEpisode_charcatersContainer)
+
+    createEpisodeViewHeader(episode, singleEpisode_dataContainer)
+    
     const characters = episode.characters
-
-
-const hello = characters[1]
-
-
     characters.forEach(char => {
         const url = char.toString()
-        createCharacterdCard(url)
+        createCharacterdCard(url, singleEpisode_charcatersContainer)
     });
+
+    mainPage?.appendChild(episodeMainContainer)
 }
 
-async function createCharacterdCard(url: string) {
+function createEpisodeViewHeader(episode: Episode, container: HTMLDivElement) {
+    const title = document.createElement('h1') as HTMLHeadingElement
+    title.id = "singleEpisode_nameContainer"
+    title.innerText = episode.name
+
+    const singleEpisode_infoContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_infoContainer.id = "singleEpisode_infoContainer"
+    singleEpisode_infoContainer.classList.add('row')
+    singleEpisode_infoContainer.classList.add('container-fluid')
+
+    const code = document.createElement('h3') as HTMLHeadingElement
+    code.id = "singleEpisode_codeContainer"
+    code.classList.add('container-sm')
+    code.innerText = episode.episode
+
+    const date = document.createElement('h3') as HTMLHeadingElement
+    date.id = "singleEpisode_codeContainer"
+    date.classList.add('container-sm')
+    date.innerText = episode.air_date
+
+
+    singleEpisode_infoContainer.appendChild(code)
+    singleEpisode_infoContainer.appendChild(date)
+
+    container.appendChild(title)
+    container.appendChild(singleEpisode_infoContainer)
+}
+
+async function createCharacterdCard(url: string, container: HTMLDivElement) {
     const char = await getSingleCharacter(url)
 
     const card = document.createElement("button");
@@ -132,7 +167,7 @@ async function createCharacterdCard(url: string) {
     card.appendChild(img)
     card.appendChild(name)
     card.appendChild(info)
-    singleEpisode_charcatersContainer.appendChild(card)
+    container.appendChild(card)
 
 }
 
@@ -178,7 +213,6 @@ function createCharacterdModal(char: Character) {
         btn.innerText = 'hello world'
         btn.addEventListener('click', () => {
             createEpisodeView(apear)
-
         })
         modalCharacter_EpisodeBtnContainer.appendChild(btn)
         console.log(apear)
@@ -193,7 +227,12 @@ async function getEpisodeCode(url: string): Promise<string> {
 }
 
 async function createLocationView(url: string) {
+     mainPage?.replaceChildren()
     const char = await getSingleLocation(url)
+    
+    const btn = document.createElement("button");
+    btn.innerText = char.name
+
+    mainPage?.appendChild(btn)
     console.log(char)
-    console.log("chanchito feliz")
 }

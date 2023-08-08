@@ -13,12 +13,7 @@ const accordionBody2 = document.querySelector("#accordionBody2");
 const accordionBody3 = document.querySelector("#accordionBody3");
 const accordionBody4 = document.querySelector("#accordionBody4");
 const accordionBody5 = document.querySelector("#accordionBody5");
-const episodeMainContainer = document.querySelector('#episodeCardsMainContainer');
-const singleEpisode_dataContainer = document.querySelector('#singleEpisode_dataContainer');
-const singleEpisode_nameContainer = document.querySelector('#singleEpisode_nameContainer');
-const singleEpisode_airDateContainer = document.querySelector('#singleEpisode_airDateContainer');
-const singleEpisode_codeContainer = document.querySelector('#singleEpisode_codeContainer');
-const singleEpisode_charcatersContainer = document.querySelector('#singleEpisode_charcatersContainer');
+const mainPage = document.querySelector('#mainPage');
 window.addEventListener("load", init);
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -77,20 +72,52 @@ function getSeasonFromEpisode(code) {
 }
 function createEpisodeView(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        singleEpisode_charcatersContainer.replaceChildren();
+        mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
         const episode = yield getSingleEpisode(url);
-        singleEpisode_nameContainer.innerText = episode.name;
-        singleEpisode_airDateContainer.innerText = episode.air_date;
-        singleEpisode_codeContainer.innerText = episode.episode;
+        const episodeMainContainer = document.createElement('div');
+        episodeMainContainer.classList.add('container-fluid');
+        episodeMainContainer.classList.add('d-flex');
+        episodeMainContainer.classList.add('justify-content-around');
+        episodeMainContainer.classList.add('flex-wrap');
+        const singleEpisode_dataContainer = document.createElement('div');
+        singleEpisode_dataContainer.id = "singleEpisode_dataContainer";
+        singleEpisode_dataContainer.classList.add('container-fluid');
+        const singleEpisode_charcatersContainer = document.createElement('div');
+        singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer";
+        singleEpisode_charcatersContainer.classList.add('flex-wrap');
+        episodeMainContainer.appendChild(singleEpisode_dataContainer);
+        episodeMainContainer.appendChild(singleEpisode_charcatersContainer);
+        createEpisodeViewHeader(episode, singleEpisode_dataContainer);
         const characters = episode.characters;
-        const hello = characters[1];
         characters.forEach(char => {
             const url = char.toString();
-            createCharacterdCard(url);
+            createCharacterdCard(url, singleEpisode_charcatersContainer);
         });
+        mainPage === null || mainPage === void 0 ? void 0 : mainPage.appendChild(episodeMainContainer);
     });
 }
-function createCharacterdCard(url) {
+function createEpisodeViewHeader(episode, container) {
+    const title = document.createElement('h1');
+    title.id = "singleEpisode_nameContainer";
+    title.innerText = episode.name;
+    const singleEpisode_infoContainer = document.createElement('div');
+    singleEpisode_infoContainer.id = "singleEpisode_infoContainer";
+    singleEpisode_infoContainer.classList.add('row');
+    singleEpisode_infoContainer.classList.add('container-fluid');
+    const code = document.createElement('h3');
+    code.id = "singleEpisode_codeContainer";
+    code.classList.add('container-sm');
+    code.innerText = episode.episode;
+    const date = document.createElement('h3');
+    date.id = "singleEpisode_codeContainer";
+    date.classList.add('container-sm');
+    date.innerText = episode.air_date;
+    singleEpisode_infoContainer.appendChild(code);
+    singleEpisode_infoContainer.appendChild(date);
+    container.appendChild(title);
+    container.appendChild(singleEpisode_infoContainer);
+}
+function createCharacterdCard(url, container) {
     return __awaiter(this, void 0, void 0, function* () {
         const char = yield getSingleCharacter(url);
         const card = document.createElement("button");
@@ -118,7 +145,7 @@ function createCharacterdCard(url) {
         card.appendChild(img);
         card.appendChild(name);
         card.appendChild(info);
-        singleEpisode_charcatersContainer.appendChild(card);
+        container.appendChild(card);
     });
 }
 function createCharacterdModal(char) {
@@ -165,9 +192,12 @@ function getEpisodeCode(url) {
 }
 function createLocationView(url) {
     return __awaiter(this, void 0, void 0, function* () {
+        mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
         const char = yield getSingleLocation(url);
+        const btn = document.createElement("button");
+        btn.innerText = char.name;
+        mainPage === null || mainPage === void 0 ? void 0 : mainPage.appendChild(btn);
         console.log(char);
-        console.log("chanchito feliz");
     });
 }
 //# sourceMappingURL=index.js.map

@@ -20,7 +20,10 @@
     background-size: cover;
     background-position: center;
 }
-
+/* #mainPage {
+  border-radius: 2rem;
+  background-color: rgba(240, 255, 255, 0.089);
+} */
 #mainFooter {
     color: white;
     height: 10%;

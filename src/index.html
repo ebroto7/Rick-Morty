@@ -75,48 +75,37 @@
                 </div>
             </aside>
             <main id="mainPage" class="col-sm-9 d-flex flex-wrap h-100">
-                <article id="episodeMainContainer" class="container-fluid d-flex justify-content-around flex-wrap ">
-                 
-                    <div id="singleEpisode_dataContainer" class="container-fluid">
-                        <h1 id="singleEpisode_nameContainer"></h1>
-                        <div id="singleEpisode_infoContainer" class="row container-fluid" >
-                            <h3 id="singleEpisode_codeContainer" class="container-sm"></h3>
-                            <h3 id="singleEpisode_airDateContainer" class="container-sm"></h3>
-                        </div>
-                    </div>
+              
+            </main>
 
-                    <div id="singleEpisode_charcatersContainer"></div>
-               
-                                <!-- CHARACTER Modal -->
-                                <div class="modal fade" id="characterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                                    <div class="card mb-3" style="max-width: 540px;">
-                                                        <div class="row g-0">
-                                                            <div class="col-md-4">
-                                                                <img id="modalCharacter_IMG" class="img-fluid rounded-start" alt="character image">
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <div class="card-body">
-                                                                <h5 id="modalCharacter_name" class="card-title"></h5>
-                                                                <p id="modalCharacter_info"></p>
-                                                                <button type="button" id="modalCharacter_location_link" class="link-success"></button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             <!-- CHARACTER Modal -->
+             <div class="modal fade" id="characterModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                                <div class="card mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img id="modalCharacter_IMG" class="img-fluid rounded-start" alt="character image">
                                         </div>
-                                        <div id="modalCharacter_EpisodeBtnContainer" class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                            <h5 id="modalCharacter_name" class="card-title"></h5>
+                                            <p id="modalCharacter_info"></p>
+                                            <button type="button" id="modalCharacter_location_link" class="link-success"></button>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="modalCharacter_EpisodeBtnContainer" class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
 
-                </article>
-            </main>
     </div>
     <footer class="footerContainer">
         <div class="footerLogoAIT">
