@@ -16,14 +16,17 @@
 #mainContent {
   padding: 1rem;
     height: 80%;
-    background-image: url(./img/wp5794980-rick-and-morty-4k-minimalist-wallpapers.jpg);
-    background-size: cover;
-    background-position: center;
+  background-color: lightgreen;
 }
-/* #mainPage {
+#mainPage {
   border-radius: 2rem;
-  background-color: rgba(240, 255, 255, 0.089);
-} */
+  
+  background-image: url(./img/wp5794980-rick-and-morty-4k-minimalist-wallpapers.jpg);
+  background-size: cover;
+  background-position: center;
+  /* overflow: hidden; */
+}
+
 #mainFooter {
     color: white;
     height: 10%;
@@ -48,10 +51,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    height: 400px;
     overflow: scroll;
-    height: 450px;
 }
 
+@media (max-width: 650px) {
+  #singleEpisode_charcatersContainer {
+    height: 300px;
+  }
+}
 .episodelink {
   color: lightgreen;
 }
