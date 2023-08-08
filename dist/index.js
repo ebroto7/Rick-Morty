@@ -100,6 +100,8 @@ function createCharacterdCard(url) {
         const card = document.createElement("button");
         card.classList.add('card');
         card.style.width = '18rem';
+        card.setAttribute("data-bs-toggle", "modal");
+        card.setAttribute("data-bs-target", "#characterModal");
         card.addEventListener('click', () => {
             console.log(char.name);
         });

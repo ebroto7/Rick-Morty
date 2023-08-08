@@ -59,7 +59,6 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
     background-color: black;
   }
   
@@ -147,35 +146,26 @@
   @media (max-width: 650px) {
 
     .footerContainer {
-
-        /* height: 100px; */
         width: 100%;
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        justify-content: space-around;
       }
     
       .footerLogoAIT {
-        display: flex;
         width: 33%;
-        justify-content: center;
-        align-items: center;
+       
       }
     
       #footerAssemblerLink {
         background-image: url('./img/AIT_SmallLogo.png');
-
         height: 60px;
         width: 60px;
-        border-radius: 1rem;
       }
     
       .footerAuthors {
         color: white;
-
         width: 67%;  
-        text-align: center;
         font-size: small;
       }
     
@@ -184,22 +174,10 @@
         margin: 10px auto;
       }
     
-      .authorLink {
-        text-decoration: none;
-        position: relative;
-        z-index: 0;
-        display: inline-block;
-        overflow: hidden;
-        color:white;
-      }
-    
       .footerOtherInfo {
         display: flex;
-        /* margin: 0.5rem; */
         width: 100%;
-        justify-content: center;
-        text-align: right;
-        align-items: center;  
+        text-align: center;
         font-size: 1rem;
       }
 

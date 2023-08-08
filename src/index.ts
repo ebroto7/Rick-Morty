@@ -55,6 +55,7 @@ function createEpisodeLink(episode: Episode) {
     const btn = document.createElement("button");
     btn.classList.add('episodelink')
     btn.classList.add('container-fluid')
+    
     btn.setAttribute("id", `linkID${id}`);
     btn.setAttribute("src", url);
     btn.innerText = codeEpisode
@@ -91,11 +92,7 @@ async function createEpisodeView(url: string) {
 
     const characters = episode.characters
     characters.forEach(char => {
-        // const card = document.createElement('h3')
-        // card.innerText = char.toString()
-        // singleEpisode_charcatersContainer.appendChild(card)
         const url = char.toString()
-
         createCharacterdCard(url)
     });
     
@@ -108,6 +105,8 @@ async function createCharacterdCard(url: string) {
     const card = document.createElement("button");
     card.classList.add('card')
     card.style.width = '18rem'
+    card.setAttribute("data-bs-toggle", "modal");
+    card.setAttribute("data-bs-target", "#characterModal");
     card.addEventListener('click', () => {
         console.log(char.name)
     })
@@ -136,3 +135,5 @@ async function createCharacterdCard(url: string) {
     singleEpisode_charcatersContainer.appendChild(card)
 
 }
+
+
