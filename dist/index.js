@@ -166,22 +166,23 @@ function createCharacterdModal(char) {
         createLocationView(char.location.url);
     });
     const apearences = char.episode;
-    apearences.forEach(apear => {
+    apearences.forEach((apear) => __awaiter(this, void 0, void 0, function* () {
         const btn = document.createElement("button");
-        btn.classList.add('episodelink');
         btn.classList.add('container-fluid');
+        btn.classList.add('justify-content-around');
         btn.classList.add('btn');
         btn.classList.add('btn-light');
         btn.setAttribute("data-bs-dismiss", "modal");
+        btn.style.width = '100px';
         btn.setAttribute("src", apear);
-        const code = getEpisodeCode(apear);
-        btn.innerText = 'hello world';
+        const code = yield getEpisodeCode(apear);
+        btn.innerText = code;
         btn.addEventListener('click', () => {
             createEpisodeView(apear);
         });
         modalCharacter_EpisodeBtnContainer.appendChild(btn);
         console.log(apear);
-    });
+    }));
 }
 function getEpisodeCode(url) {
     return __awaiter(this, void 0, void 0, function* () {

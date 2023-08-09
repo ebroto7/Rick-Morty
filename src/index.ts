@@ -196,21 +196,23 @@ function createCharacterdModal(char: Character) {
     })
 
     const apearences = char.episode
-    apearences.forEach(apear => {
+    apearences.forEach(async apear => {
         const btn = document.createElement("button");
-        btn.classList.add('episodelink')
         btn.classList.add('container-fluid')
+        // btn.classList.add('d-flex')
+        btn.classList.add('justify-content-around')
+        // btn.classList.add('flex-wrap')
         btn.classList.add('btn')
         btn.classList.add('btn-light')
         btn.setAttribute("data-bs-dismiss", "modal");
+        btn.style.width = '100px'
+       
 
         
         btn.setAttribute("src", apear);
-       
-        
 
-        const code = getEpisodeCode(apear)
-        btn.innerText = 'hello world'
+        const code = await getEpisodeCode(apear)
+        btn.innerText = code
         btn.addEventListener('click', () => {
             createEpisodeView(apear)
         })
@@ -220,7 +222,7 @@ function createCharacterdModal(char: Character) {
 
 }
 
-async function getEpisodeCode(url: string): Promise<string> {
+async function getEpisodeCode(url: string) {
     const episode = await getSingleEpisode(url)
     const code: string = episode.episode
     return code
@@ -231,6 +233,7 @@ async function createLocationView(url: string) {
     const location = await getSingleLocation(url)
     
     const episodeMainContainer = document.createElement('div') as HTMLDivElement
+
     episodeMainContainer.classList.add('container-fluid')
     episodeMainContainer.classList.add('d-flex')
     episodeMainContainer.classList.add('justify-content-around')
