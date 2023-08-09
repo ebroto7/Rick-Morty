@@ -166,7 +166,12 @@ function createCharacterdModal(char) {
         createLocationView(char.location.url);
     });
     const apearences = char.episode;
-    apearences.forEach((apear) => __awaiter(this, void 0, void 0, function* () {
+    apearences.forEach(apear => {
+        createApearenceButton(apear, modalCharacter_EpisodeBtnContainer);
+    });
+}
+function createApearenceButton(url, container) {
+    return __awaiter(this, void 0, void 0, function* () {
         const btn = document.createElement("button");
         btn.classList.add('container-fluid');
         btn.classList.add('justify-content-around');
@@ -174,15 +179,14 @@ function createCharacterdModal(char) {
         btn.classList.add('btn-light');
         btn.setAttribute("data-bs-dismiss", "modal");
         btn.style.width = '100px';
-        btn.setAttribute("src", apear);
-        const code = yield getEpisodeCode(apear);
+        btn.setAttribute("src", url);
+        const code = yield getEpisodeCode(url);
         btn.innerText = code;
         btn.addEventListener('click', () => {
-            createEpisodeView(apear);
+            createEpisodeView(url);
         });
-        modalCharacter_EpisodeBtnContainer.appendChild(btn);
-        console.log(apear);
-    }));
+        container.appendChild(btn);
+    });
 }
 function getEpisodeCode(url) {
     return __awaiter(this, void 0, void 0, function* () {
