@@ -10,14 +10,40 @@
     background-repeat: no-repeat;
     background-position: center;
     height: 10%;
-
 }
 
 #mainContent {
   padding: 1rem;
     height: 80%;
-  background-color: lightgreen;
+  background-color: black;
 }
+.planetLogoImage {
+  background-image: url(./img/PanetLogo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  height: 100px;
+  width: 100px;
+  
+}
+.epsiodeLogoImage {
+  background-image: url(./img/epdisodeLogoTV.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  height: 100px;
+  width: 100px;
+  
+}
+
+.accordion-button {
+  color: lightgreen;
+  /* text-align: center; */
+  justify-content: center;
+}
+
 #mainPage {
   border-radius: 2rem;
   
@@ -35,6 +61,8 @@
 
  
 .card {
+  margin: 10px;
+
   --bg: #e8e8e8;
   --contrast: #e2e0e0;
   --grey: #93a1a1;
@@ -45,12 +73,35 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
+.card:hover {
+  transform: scale(1.05);
+}
 
+.modal-header {
+  /* height: 150px; */
+  /* border-radius: 15px; */
+  /* display: flex;
+  flex-direction: column; */
+  background: linear-gradient(45deg, lightgreen 0%, rgb(108, 179, 108) 100%);
+  /* position: relative; */
+}
+
+
+#singleEpisode_imageContainer {
+  height: 100px;
+  width: 20%;
+}
 
 #singleEpisode_dataContainer {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     color: white;
+    align-items: center;
+    /* height: 100px; */
+    width: 70%;
 }
+
 
 #singleEpisode_infoContainer {
     display: flex;
@@ -69,6 +120,18 @@
 @media (max-width: 650px) {
   #singleEpisode_charcatersContainer {
     height: 300px;
+  }
+  #singleEpisode_nameContainer {
+    font-size: large;
+  }
+  #singleEpisode_codeContainer {
+    font-size: small;
+  }
+  #singleEpisode_dataContainer h2 {
+    font-size: small;
+  }
+  #singleEpisode_dataContainer h4 {
+    font-size: small;
   }
 }
 .episodelink {
@@ -221,3 +284,102 @@
   
   /* finish footer*/
  
+
+  #mainPage {
+    position: relative;
+    padding: 18px 55px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    /* background: linear-gradient(87deg, #6d67e4, #7743db, #4e31aa, #6d67e4, #6d67e4); */
+    background: black;
+    background-size: 600% 600%;
+    border: 3px solid lightgreen;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 4px #9F73AB);
+    box-shadow: inset 0 0 10px 1px lightgreen, 0 0 10px 5px lightgreen;
+    cursor: pointer;
+    transition: all 0.5s;
+    animation: GradientAnimation 25s ease infinite;
+  }
+/*   
+  #mainPage::after {
+    content: "";
+    position: absolute;
+    width: 302px;
+    height: 84px;
+    top: 0;
+    left: -17px;
+    border: 5px solid #453c67;
+    border-width: 0 2px 4px 0;
+    border-radius: 100%;
+    filter: drop-shadow(0px 0px 6px lightgreen);
+    transform: rotate(-30deg);
+    animation: LinerAfter 15s ease infinite;
+  } */
+  
+  /* #mainPage::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    top: 0;
+    left: -20px;
+    border: 5px solid lightgreen;
+    border-width: 0 12px 8px 4px;
+    border-radius: 100%;
+    filter: drop-shadow(0px 0px 6px lightgreen);
+    box-shadow: inset 0 0 10px 1px lightgreen, 0 0 10px 5px lightgreen;
+    transform: rotate(-30deg);
+    transition: all 0.5s;
+    animation: LinerBefore 15s ease infinite;
+  }
+   */
+  @keyframes GradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes LinerAfter {
+    0% {
+      left: -27px;
+      height: 54px;
+    }
+  
+    50% {
+      left: -7px;
+      height: 37px;
+    }
+  
+    100% {
+      left: -27px;
+      height: 54px;
+    }
+  }
+  
+  @keyframes LinerBefore {
+    0% {
+      left: -30px;
+      height: 50px;
+    }
+  
+    50% {
+      left: -10px;
+      height: 33px;
+    }
+  
+    100% {
+      left: -30px;
+      height: 50px;
+    }
+  }
+  

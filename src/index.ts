@@ -46,6 +46,7 @@ function createEpisodeLink(episode: Episode) {
     
     btn.setAttribute("id", `linkID${id}`);
     btn.setAttribute("src", url);
+    // btn.setAttribute("href", "#mainContainer")
     
     btn.innerText = codeEpisode
     btn.addEventListener('click', () => {
@@ -73,6 +74,7 @@ function getSeasonFromEpisode(code: string) {
 
 async function createEpisodeView(url: string) {
     mainPage?.replaceChildren()
+    console.log("chanchito triste")
     const episode = await getSingleEpisode(url)
 
     const episodeMainContainer = document.createElement('div') as HTMLDivElement
@@ -81,6 +83,17 @@ async function createEpisodeView(url: string) {
     episodeMainContainer.classList.add('justify-content-around')
     episodeMainContainer.classList.add('flex-wrap')
 
+    const singleEpisode_dataImageContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_dataImageContainer.id = "singleEpisode_dataImageContainer"
+    singleEpisode_dataImageContainer.classList.add('container-fluid')
+    singleEpisode_dataImageContainer.classList.add('d-flex')
+    singleEpisode_dataImageContainer.classList.add('flex-wrap')
+    const singleEpisode_imageContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_imageContainer.id = "singleEpisode_imageContainer"
+    singleEpisode_imageContainer.classList.add('container-fluid')
+    singleEpisode_imageContainer.classList.add('d-none')
+    singleEpisode_imageContainer.classList.add('d-sm-block')
+   
     const singleEpisode_dataContainer = document.createElement('div') as HTMLDivElement
     singleEpisode_dataContainer.id = "singleEpisode_dataContainer"
     singleEpisode_dataContainer.classList.add('container-fluid')
@@ -91,7 +104,14 @@ async function createEpisodeView(url: string) {
     singleEpisode_charcatersContainer.classList.add('flex-wrap')
 
 
-    episodeMainContainer.appendChild(singleEpisode_dataContainer)
+    const episodeImage = document.createElement('div') as HTMLImageElement
+    episodeImage.classList.add("epsiodeLogoImage")
+    
+
+    singleEpisode_imageContainer.appendChild(episodeImage)
+    singleEpisode_dataImageContainer.appendChild(singleEpisode_imageContainer)
+    singleEpisode_dataImageContainer.appendChild(singleEpisode_dataContainer)
+    episodeMainContainer.appendChild(singleEpisode_dataImageContainer)
     episodeMainContainer.appendChild(singleEpisode_charcatersContainer)
 
     createEpisodeViewHeader(episode, singleEpisode_dataContainer)
@@ -134,6 +154,7 @@ function createEpisodeViewHeader(episode: Episode, container: HTMLDivElement) {
 }
 
 async function createCharacterdCard(url: string, container: HTMLDivElement) {
+    container.replaceChildren()
     const char = await getSingleCharacter(url)
 
     const card = document.createElement("button");
@@ -151,7 +172,6 @@ async function createCharacterdCard(url: string, container: HTMLDivElement) {
     img.classList.add('card-img-top')
     img.classList.add('d-none')
     img.classList.add('d-sm-block')
-    console.log(char.image)
 
     const name = document.createElement("h4");
     name.classList.add('card-title')
@@ -197,7 +217,6 @@ function createCharacterdModal(char: Character) {
 
     const apearences = char.episode
     apearences.forEach(async apear => {
-
         createApearenceButton(apear, modalCharacter_EpisodeBtnContainer)
     });
 
@@ -231,24 +250,33 @@ async function getEpisodeCode(url: string) {
 }
 
 async function createLocationView(url: string) {
-     mainPage?.replaceChildren()
+    mainPage?.replaceChildren()
+    console.log("chanchito feliz")
     const location = await getSingleLocation(url)
     
     const episodeMainContainer = document.createElement('div') as HTMLDivElement
-
+    episodeMainContainer.id = 'locationContainer'
     episodeMainContainer.classList.add('container-fluid')
     episodeMainContainer.classList.add('d-flex')
     episodeMainContainer.classList.add('justify-content-around')
     episodeMainContainer.classList.add('flex-wrap')
 
+    const singleEpisode_dataImageContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_dataImageContainer.id = "singleEpisode_dataImageContainer"
+    singleEpisode_dataImageContainer.classList.add('container-fluid')
+    singleEpisode_dataImageContainer.classList.add('d-flex')
+    singleEpisode_dataImageContainer.classList.add('flex-wrap')
+    const singleEpisode_imageContainer = document.createElement('div') as HTMLDivElement
+    singleEpisode_imageContainer.id = "singleEpisode_imageContainer"
+    singleEpisode_imageContainer.classList.add('container-fluid')
+    singleEpisode_imageContainer.classList.add('d-none')
+    singleEpisode_imageContainer.classList.add('d-sm-block')
     const singleEpisode_dataContainer = document.createElement('div') as HTMLDivElement
     singleEpisode_dataContainer.id = "singleEpisode_dataContainer"
     singleEpisode_dataContainer.classList.add('container-fluid')
 
     const singleEpisode_charcatersContainer = document.createElement('div') as HTMLDivElement
     singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer"
-    singleEpisode_charcatersContainer.innerText = "RESIDENTS:"
-    singleEpisode_charcatersContainer.style.color = "red"
 
 
     const title = document.createElement("h2");
@@ -256,16 +284,27 @@ async function createLocationView(url: string) {
     const info = document.createElement("h4");
     info.innerText = `${location.type} | ${location.dimension}`
 
+    const locationImage = document.createElement('div') as HTMLImageElement
+    locationImage.classList.add("planetLogoImage")
+  
+
+    singleEpisode_dataContainer.appendChild(locationImage)
+    
+    singleEpisode_dataContainer.appendChild(title)
+    singleEpisode_dataContainer.appendChild(info)
+
+    singleEpisode_imageContainer.appendChild(locationImage)
+    singleEpisode_dataImageContainer.appendChild(singleEpisode_imageContainer)
+    singleEpisode_dataImageContainer.appendChild(singleEpisode_dataContainer)
+    episodeMainContainer.appendChild(singleEpisode_dataImageContainer)
+    episodeMainContainer.appendChild(singleEpisode_charcatersContainer)
+   
+
     const characters = location.residents
     characters.forEach(char => {
         const url = char.toString()
         createCharacterdCard(url, singleEpisode_charcatersContainer)
     });
 
-    singleEpisode_dataContainer.appendChild(title)
-    singleEpisode_dataContainer.appendChild(info)
-    episodeMainContainer.appendChild(singleEpisode_dataContainer)
-    episodeMainContainer.appendChild(singleEpisode_charcatersContainer)
-    mainPage?.appendChild(episodeMainContainer)
-    console.log(location)
+   mainPage?.appendChild(episodeMainContainer)
 }

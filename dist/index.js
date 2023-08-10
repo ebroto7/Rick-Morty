@@ -73,19 +73,35 @@ function getSeasonFromEpisode(code) {
 function createEpisodeView(url) {
     return __awaiter(this, void 0, void 0, function* () {
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
+        console.log("chanchito triste");
         const episode = yield getSingleEpisode(url);
         const episodeMainContainer = document.createElement('div');
         episodeMainContainer.classList.add('container-fluid');
         episodeMainContainer.classList.add('d-flex');
         episodeMainContainer.classList.add('justify-content-around');
         episodeMainContainer.classList.add('flex-wrap');
+        const singleEpisode_dataImageContainer = document.createElement('div');
+        singleEpisode_dataImageContainer.id = "singleEpisode_dataImageContainer";
+        singleEpisode_dataImageContainer.classList.add('container-fluid');
+        singleEpisode_dataImageContainer.classList.add('d-flex');
+        singleEpisode_dataImageContainer.classList.add('flex-wrap');
+        const singleEpisode_imageContainer = document.createElement('div');
+        singleEpisode_imageContainer.id = "singleEpisode_imageContainer";
+        singleEpisode_imageContainer.classList.add('container-fluid');
+        singleEpisode_imageContainer.classList.add('d-none');
+        singleEpisode_imageContainer.classList.add('d-sm-block');
         const singleEpisode_dataContainer = document.createElement('div');
         singleEpisode_dataContainer.id = "singleEpisode_dataContainer";
         singleEpisode_dataContainer.classList.add('container-fluid');
         const singleEpisode_charcatersContainer = document.createElement('div');
         singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer";
         singleEpisode_charcatersContainer.classList.add('flex-wrap');
-        episodeMainContainer.appendChild(singleEpisode_dataContainer);
+        const episodeImage = document.createElement('div');
+        episodeImage.classList.add("epsiodeLogoImage");
+        singleEpisode_imageContainer.appendChild(episodeImage);
+        singleEpisode_dataImageContainer.appendChild(singleEpisode_imageContainer);
+        singleEpisode_dataImageContainer.appendChild(singleEpisode_dataContainer);
+        episodeMainContainer.appendChild(singleEpisode_dataImageContainer);
         episodeMainContainer.appendChild(singleEpisode_charcatersContainer);
         createEpisodeViewHeader(episode, singleEpisode_dataContainer);
         const characters = episode.characters;
@@ -119,6 +135,7 @@ function createEpisodeViewHeader(episode, container) {
 }
 function createCharacterdCard(url, container) {
     return __awaiter(this, void 0, void 0, function* () {
+        container.replaceChildren();
         const char = yield getSingleCharacter(url);
         const card = document.createElement("button");
         card.classList.add('card');
@@ -133,7 +150,6 @@ function createCharacterdCard(url, container) {
         img.classList.add('card-img-top');
         img.classList.add('d-none');
         img.classList.add('d-sm-block');
-        console.log(char.image);
         const name = document.createElement("h4");
         name.classList.add('card-title');
         name.innerText = char.name;
@@ -166,9 +182,9 @@ function createCharacterdModal(char) {
         createLocationView(char.location.url);
     });
     const apearences = char.episode;
-    apearences.forEach(apear => {
+    apearences.forEach((apear) => __awaiter(this, void 0, void 0, function* () {
         createApearenceButton(apear, modalCharacter_EpisodeBtnContainer);
-    });
+    }));
 }
 function createApearenceButton(url, container) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -198,34 +214,49 @@ function getEpisodeCode(url) {
 function createLocationView(url) {
     return __awaiter(this, void 0, void 0, function* () {
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
+        console.log("chanchito feliz");
         const location = yield getSingleLocation(url);
         const episodeMainContainer = document.createElement('div');
+        episodeMainContainer.id = 'locationContainer';
         episodeMainContainer.classList.add('container-fluid');
         episodeMainContainer.classList.add('d-flex');
         episodeMainContainer.classList.add('justify-content-around');
         episodeMainContainer.classList.add('flex-wrap');
+        const singleEpisode_dataImageContainer = document.createElement('div');
+        singleEpisode_dataImageContainer.id = "singleEpisode_dataImageContainer";
+        singleEpisode_dataImageContainer.classList.add('container-fluid');
+        singleEpisode_dataImageContainer.classList.add('d-flex');
+        singleEpisode_dataImageContainer.classList.add('flex-wrap');
+        const singleEpisode_imageContainer = document.createElement('div');
+        singleEpisode_imageContainer.id = "singleEpisode_imageContainer";
+        singleEpisode_imageContainer.classList.add('container-fluid');
+        singleEpisode_imageContainer.classList.add('d-none');
+        singleEpisode_imageContainer.classList.add('d-sm-block');
         const singleEpisode_dataContainer = document.createElement('div');
         singleEpisode_dataContainer.id = "singleEpisode_dataContainer";
         singleEpisode_dataContainer.classList.add('container-fluid');
         const singleEpisode_charcatersContainer = document.createElement('div');
         singleEpisode_charcatersContainer.id = "singleEpisode_charcatersContainer";
-        singleEpisode_charcatersContainer.innerText = "RESIDENTS:";
-        singleEpisode_charcatersContainer.style.color = "red";
         const title = document.createElement("h2");
         title.innerText = location.name;
         const info = document.createElement("h4");
         info.innerText = `${location.type} | ${location.dimension}`;
+        const locationImage = document.createElement('div');
+        locationImage.classList.add("planetLogoImage");
+        singleEpisode_dataContainer.appendChild(locationImage);
+        singleEpisode_dataContainer.appendChild(title);
+        singleEpisode_dataContainer.appendChild(info);
+        singleEpisode_imageContainer.appendChild(locationImage);
+        singleEpisode_dataImageContainer.appendChild(singleEpisode_imageContainer);
+        singleEpisode_dataImageContainer.appendChild(singleEpisode_dataContainer);
+        episodeMainContainer.appendChild(singleEpisode_dataImageContainer);
+        episodeMainContainer.appendChild(singleEpisode_charcatersContainer);
         const characters = location.residents;
         characters.forEach(char => {
             const url = char.toString();
             createCharacterdCard(url, singleEpisode_charcatersContainer);
         });
-        singleEpisode_dataContainer.appendChild(title);
-        singleEpisode_dataContainer.appendChild(info);
-        episodeMainContainer.appendChild(singleEpisode_dataContainer);
-        episodeMainContainer.appendChild(singleEpisode_charcatersContainer);
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.appendChild(episodeMainContainer);
-        console.log(location);
     });
 }
 //# sourceMappingURL=index.js.map
