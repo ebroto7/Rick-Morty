@@ -71,7 +71,6 @@ function getSeasonFromEpisode(code: string) {
    return season
 }
 
-
 async function createEpisodeView(url: string) {
     mainPage?.replaceChildren()
     const episode = await getSingleEpisode(url)
