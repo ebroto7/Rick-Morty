@@ -73,7 +73,6 @@ function getSeasonFromEpisode(code) {
 function createEpisodeView(url) {
     return __awaiter(this, void 0, void 0, function* () {
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
-        console.log("chanchito triste");
         const episode = yield getSingleEpisode(url);
         const episodeMainContainer = document.createElement('div');
         episodeMainContainer.classList.add('container-fluid');
@@ -169,22 +168,30 @@ function createCharacterdModal(char) {
     const modalCharacter_IMG = document.querySelector('#modalCharacter_IMG');
     const modalCharacter_info = document.querySelector('#modalCharacter_info');
     const modalCharacter_location_link = document.querySelector('#modalCharacter_location_link');
-    modalCharacter_location_link.classList.add('btn');
-    modalCharacter_location_link.classList.add('btn-outline-light');
     const modalCharacter_EpisodeBtnContainer = document.querySelector('#modalCharacter_EpisodeBtnContainer');
     modalCharacter_EpisodeBtnContainer.replaceChildren();
     modalCharacter_IMG.src = char.image;
     modalCharacter_name.innerText = char.name;
     modalCharacter_info.innerText = `${char.species} | ${char.status} | ${char.gender}`;
-    modalCharacter_location_link.innerText = char.location.name;
-    modalCharacter_location_link.setAttribute("data-bs-dismiss", "modal");
-    modalCharacter_location_link.addEventListener('click', () => {
-        createLocationView(char.location.url);
-    });
+    const locationLinkButton = createLocationLinkButton(char);
+    modalCharacter_location_link.replaceChildren();
+    modalCharacter_location_link.appendChild(locationLinkButton);
     const apearences = char.episode;
     apearences.forEach((apear) => __awaiter(this, void 0, void 0, function* () {
         createApearenceButton(apear, modalCharacter_EpisodeBtnContainer);
     }));
+}
+function createLocationLinkButton(char) {
+    const button = document.createElement('button');
+    button.classList.add('btn');
+    button.classList.add('btn-outline-light');
+    button.innerText = char.location.name;
+    button.style.color = "lightgreen";
+    button.setAttribute("data-bs-dismiss", "modal");
+    button.addEventListener('click', () => {
+        createLocationView(char.location.url);
+    });
+    return button;
 }
 function createApearenceButton(url, container) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -214,7 +221,6 @@ function getEpisodeCode(url) {
 function createLocationView(url) {
     return __awaiter(this, void 0, void 0, function* () {
         mainPage === null || mainPage === void 0 ? void 0 : mainPage.replaceChildren();
-        console.log("chanchito feliz");
         const location = yield getSingleLocation(url);
         const episodeMainContainer = document.createElement('div');
         episodeMainContainer.id = 'locationContainer';

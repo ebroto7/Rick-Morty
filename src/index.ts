@@ -74,7 +74,6 @@ function getSeasonFromEpisode(code: string) {
 
 async function createEpisodeView(url: string) {
     mainPage?.replaceChildren()
-    console.log("chanchito triste")
     const episode = await getSingleEpisode(url)
 
     const episodeMainContainer = document.createElement('div') as HTMLDivElement
@@ -196,9 +195,8 @@ function createCharacterdModal(char: Character) {
     const modalCharacter_name = document.querySelector('#modalCharacter_name') as HTMLHeadingElement
     const modalCharacter_IMG = document.querySelector('#modalCharacter_IMG') as HTMLImageElement
     const modalCharacter_info = document.querySelector('#modalCharacter_info') as HTMLParagraphElement
-    const modalCharacter_location_link = document.querySelector('#modalCharacter_location_link') as HTMLButtonElement
-    modalCharacter_location_link.classList.add('btn')
-    modalCharacter_location_link.classList.add('btn-outline-light') 
+    const modalCharacter_location_link = document.querySelector('#modalCharacter_location_link') as HTMLDivElement
+    
 
     const modalCharacter_EpisodeBtnContainer = document.querySelector('#modalCharacter_EpisodeBtnContainer') as HTMLDivElement
     modalCharacter_EpisodeBtnContainer.replaceChildren()
@@ -208,12 +206,10 @@ function createCharacterdModal(char: Character) {
     modalCharacter_name.innerText = char.name
     modalCharacter_info.innerText = `${char.species} | ${char.status} | ${char.gender}`
 
-    modalCharacter_location_link.innerText = char.location.name
-    modalCharacter_location_link.setAttribute("data-bs-dismiss", "modal");
 
-    modalCharacter_location_link.addEventListener('click', ()=> {
-        createLocationView(char.location.url)
-    })
+    const locationLinkButton = createLocationLinkButton(char)
+    modalCharacter_location_link.replaceChildren()
+    modalCharacter_location_link.appendChild(locationLinkButton)
 
     const apearences = char.episode
     apearences.forEach(async apear => {
@@ -221,6 +217,22 @@ function createCharacterdModal(char: Character) {
     });
 
 }
+
+function createLocationLinkButton(char: Character) {
+    const button = document.createElement('button') as HTMLButtonElement
+    button.classList.add('btn')
+    button.classList.add('btn-outline-light') 
+    button.innerText = char.location.name
+    button.style.color = "lightgreen"
+    button.setAttribute("data-bs-dismiss", "modal");
+
+    button.addEventListener('click', ()=> {
+        createLocationView(char.location.url)
+    })
+
+    return button
+}
+
 async function createApearenceButton(url: string, container: HTMLDivElement ) {
     const btn = document.createElement("button");
     btn.classList.add('container-fluid')
@@ -251,7 +263,6 @@ async function getEpisodeCode(url: string) {
 
 async function createLocationView(url: string) {
     mainPage?.replaceChildren()
-    console.log("chanchito feliz")
     const location = await getSingleLocation(url)
     
     const episodeMainContainer = document.createElement('div') as HTMLDivElement

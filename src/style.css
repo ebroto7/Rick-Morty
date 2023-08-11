@@ -1,7 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Tektur&display=swap');
+
+
 .body{
     height: 100vh;
-    background-color: black;
-
+    background-color: rgb(23, 23, 23);
+    font-family:  'Tektur', cursive;
 }
 
 #mainHeader {
@@ -14,8 +18,7 @@
 
 #mainContent {
   padding: 1rem;
-    height: 80%;
-  background-color: black;
+  height: 80%;
 }
 .planetLogoImage {
   background-image: url(./img/PanetLogo.png);
@@ -25,7 +28,32 @@
   
   height: 100px;
   width: 100px;
+}
+
+#mainPage {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-radius: 2rem;
   
+  background-image: url(./img/wp5794980-rick-and-morty-4k-minimalist-wallpapers.jpg);
+  background-size: cover;
+  background-position: center; 
+  overflow: hidden;
+}
+#startMainView {
+  background-color: rgba(0, 0, 0, 0.377);
+  font-size: 5rem;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+#mainFooter {
+    color: white;
+    height: 10%;
 }
 .epsiodeLogoImage {
   background-image: url(./img/epdisodeLogoTV.png);
@@ -40,24 +68,8 @@
 
 .accordion-button {
   color: lightgreen;
-  /* text-align: center; */
   justify-content: center;
 }
-
-#mainPage {
-  border-radius: 2rem;
-  
-  background-image: url(./img/wp5794980-rick-and-morty-4k-minimalist-wallpapers.jpg);
-  background-size: cover;
-  background-position: center; 
-  overflow: hidden;
-}
-
-#mainFooter {
-    color: white;
-    height: 10%;
-}
-
 
  
 .card {
@@ -78,12 +90,8 @@
 }
 
 .modal-header {
-  /* height: 150px; */
-  /* border-radius: 15px; */
-  /* display: flex;
-  flex-direction: column; */
+ 
   background: linear-gradient(45deg, lightgreen 0%, rgb(108, 179, 108) 100%);
-  /* position: relative; */
 }
 
 
@@ -98,7 +106,6 @@
     text-align: center;
     color: white;
     align-items: center;
-    /* height: 100px; */
     width: 70%;
 }
 
@@ -127,22 +134,38 @@
   #singleEpisode_codeContainer {
     font-size: small;
   }
+  #singleEpisode_dataContainer {
+    background-color: rgba(0, 0, 0, 0.323);
+    border-radius: 1rem;
+  }
   #singleEpisode_dataContainer h2 {
-    font-size: small;
+    font-size: large;
+    font-weight: bold;
+    width: 100%;
   }
   #singleEpisode_dataContainer h4 {
     font-size: small;
   }
+  #singleEpisode_imageContainer {
+    display: none;
+  }
 }
 .episodelink {
   color: lightgreen;
+}
+.episodelink:hover {
+  background-color: lightgreen;
+  color: black;
+  scale: 1.05;
 }
 
 
 #modalCharacter_EpisodeBtnContainer {
   display: flex;
   flex-wrap: wrap;
- 
+  justify-content: space-around;
+  background: linear-gradient(45deg, lightgreen 0%, rgb(108, 179, 108) 100%);
+
 }
 
 /* init footer */
@@ -152,7 +175,6 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    background-color: black;
   }
   
   .footerLogoAIT {
@@ -284,24 +306,3 @@
 
 
 
-
-  .singleEpisode_charcatersContainer {
-    -webkit-mask-image: linear-gradient(to right, #0000, #000, #000, #0000);
-    
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    
-    display: flex;
-    gap: var(--size-10);
-    align-items: start;
-    padding: var(--size-10);
-  }
-  
-  .singleEpisode_charcatersContainer > .card {
-    background-color: red;
-    block-size: var(--size-15);
-    aspect-ratio: var(--ratio-square);
-    background-color: var(--surface-2);
-    border-radius: var(--radius-3);
-    box-shadow: var(--shadow-4);
-  }

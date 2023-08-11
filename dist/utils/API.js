@@ -12,38 +12,63 @@ const urlCharacters = `${url}/character`;
 const urlEpisodes = `${url}/episode?page=`;
 export function getCharacters() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(urlCharacters);
-        const data = yield response.json();
-        return data.results;
+        try {
+            const response = yield fetch(urlCharacters);
+            const data = yield response.json();
+            return data.results;
+        }
+        catch (error) {
+            throw new Error("something has gone wrong");
+        }
     });
 }
 export function getSingleCharacter(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(url);
-        const data = yield response.json();
-        return data;
+        try {
+            const response = yield fetch(url);
+            const data = yield response.json();
+            return data;
+        }
+        catch (error) {
+            throw new Error("something has gone wrong");
+        }
     });
 }
 export function getEpisodes(page) {
     return __awaiter(this, void 0, void 0, function* () {
-        let episodesPageUrl = `${urlEpisodes}${page}`;
-        const response = yield fetch(episodesPageUrl);
-        const data = yield response.json();
-        return data.results;
+        try {
+            let episodesPageUrl = `${urlEpisodes}${page}`;
+            const response = yield fetch(episodesPageUrl);
+            const data = yield response.json();
+            return data.results;
+        }
+        catch (error) {
+            throw new Error("something has gone wrong");
+        }
     });
 }
 export function getSingleEpisode(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(url);
-        const data = yield response.json();
-        return data;
+        try {
+            const response = yield fetch(url);
+            const data = yield response.json();
+            return data;
+        }
+        catch (error) {
+            throw new Error("something has gone wrong");
+        }
     });
 }
 export function getSingleLocation(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch(url);
-        const data = yield response.json();
-        return data;
+        try {
+            const response = yield fetch(url);
+            const data = yield response.json();
+            return data;
+        }
+        catch (error) {
+            throw new Error("something has gone wrong");
+        }
     });
 }
 //# sourceMappingURL=API.js.map

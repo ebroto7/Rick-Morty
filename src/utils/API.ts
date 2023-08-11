@@ -7,32 +7,57 @@ const urlCharacters = `${url}/character`
 const urlEpisodes = `${url}/episode?page=`
 
 export async function getCharacters(): Promise<Character[]> {
-    const response = await fetch(urlCharacters);
-    const data = await response.json()
-    return data.results;
+   try {
+        const response = await fetch(urlCharacters);
+        const data = await response.json()
+        return data.results;
+    } catch (error) {
+        throw new Error ("something has gone wrong")
+        // make a modal for show error
+    }
 }
 
 export async function getSingleCharacter(url: string): Promise<Character> {
-    const response = await fetch(url)
-    const data = await response.json()
-    return data;
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data;
+    } catch (error) {
+        throw new Error ("something has gone wrong")
+        // make a modal for show error
+    }
 }
 
 export async function getEpisodes(page: Number): Promise<Episode[]>  {
-    let episodesPageUrl: string = `${urlEpisodes}${page}`
-    const response = await fetch(episodesPageUrl);
-    const data = await response.json()
-    return data.results;
+    try {
+        let episodesPageUrl: string = `${urlEpisodes}${page}`
+        const response = await fetch(episodesPageUrl);
+        const data = await response.json()
+        return data.results;
+    } catch (error) {
+        throw new Error ("something has gone wrong")
+        // make a modal for show error
+    }
 }
 
 export async function getSingleEpisode(url: string): Promise<Episode> {
-    const response = await fetch(url)
-    const data = await response.json()
-    return data
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        throw new Error ("something has gone wrong")
+        // make a modal for show error
+    }
 }
 
 export async function getSingleLocation(url: string): Promise<Location> {
-    const response = await fetch(url)
-    const data = await response.json()
-    return data 
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data 
+    } catch (error) {
+        throw new Error ("something has gone wrong")
+        // make a modal for show error
+    }
 }
